@@ -16,7 +16,7 @@ export interface MatchResult {
   requestId: string;
   score: number; // 0-100
   excluded: boolean;
-  excludedReason?: string;
+  excludedReason?: string | undefined;
   distanceKm: number;
   reasons: Reason[];
 }

@@ -19,7 +19,7 @@ export const MUNICIPALITIES: Municipality[] = [
   { name: "Tunja", dept: "Boyacá", lat: 5.5353, lng: -73.3678 },
 ];
 
-export const muni = (name: string) => MUNICIPALITIES.find((m) => m.name === name) ?? MUNICIPALITIES[0];
+export const muni = (name: string): Municipality => MUNICIPALITIES.find((m) => m.name === name) ?? MUNICIPALITIES[0]!;
 
 export function haversineKm(a: { lat: number; lng: number }, b: { lat: number; lng: number }) {
   const R = 6371;
