@@ -118,7 +118,7 @@ export interface Message {
   senderId: string;
   body: string;
   at: string;
-  proposal?: { pricePerLiter: number; liters: number; pickupAt: string; transportBy: string };
+  proposal?: { pricePerLiter: number; liters: number; pickupAt: string; transportBy: string } | undefined;
 }
 
 export interface EventEntry {
@@ -137,12 +137,12 @@ export interface Transaction {
   liters: number;
   pricePerLiter: number | null;
   pickupPoint: string;
-  pickupAt?: string;
+  pickupAt?: string | undefined;
   transportBy: "comprador" | "productor" | "transportador" | "por_definir";
   status: TxStatus;
   paymentStatus: PaymentStatus;
-  deliveredLiters?: number;
-  deliveredTempC?: number;
+  deliveredLiters?: number | undefined;
+  deliveredTempC?: number | undefined;
   messages: Message[];
   events: EventEntry[];
   createdAt: string;

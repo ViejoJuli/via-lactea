@@ -1,7 +1,7 @@
 import type { AppNotification, Offer, Profile, PurchaseRequest, QualityRecord, RouteGroup, Transaction } from "./types";
 
 /** TODOS los datos de este archivo son DATOS DE DEMOSTRACIÓN. Nombres ficticios. */
-export const CURRENT_USER: Record<string, string> = {
+export const CURRENT_USER: Record<"productor" | "comprador" | "transportador" | "asociacion" | "admin", string> = {
   productor: "p1",
   comprador: "b1",
   transportador: "t1",
