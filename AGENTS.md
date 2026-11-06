@@ -28,3 +28,6 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Application architecture
+- Keep demonstration actions in the existing StoreProvider, shared UI in components, and distinct content pages in TanStack file routes; this isolates the prototype from later authenticated persistence.
