@@ -10,33 +10,76 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AppRouteImport } from './routes/app'
+import { Route as AppMisOfertasRouteImport } from './routes/app.mis-ofertas'
+import { Route as AppOfertasRouteImport } from './routes/app.ofertas'
+import { Route as AppOfertasIndexRouteImport } from './routes/app.ofertas.index'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AppRoute = AppRouteImport.update({
+  id: '/app',
+  path: '/app',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppMisOfertasRoute = AppMisOfertasRouteImport.update({
+  id: '/mis-ofertas',
+  path: '/mis-ofertas',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppOfertasRoute = AppOfertasRouteImport.update({
+  id: '/ofertas',
+  path: '/ofertas',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppOfertasIndexRoute = AppOfertasIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AppOfertasRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/app': typeof AppRouteWithChildren
+  '/app/mis-ofertas': typeof AppMisOfertasRoute
+  '/app/ofertas': typeof AppOfertasRouteWithChildren
+  '/app/ofertas/': typeof AppOfertasIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/app': typeof AppRouteWithChildren
+  '/app/mis-ofertas': typeof AppMisOfertasRoute
+  '/app/ofertas': typeof AppOfertasIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/app': typeof AppRouteWithChildren
+  '/app/mis-ofertas': typeof AppMisOfertasRoute
+  '/app/ofertas': typeof AppOfertasRouteWithChildren
+  '/app/ofertas/': typeof AppOfertasIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    '/' | '/app' | '/app/mis-ofertas' | '/app/ofertas' | '/app/ofertas/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/app' | '/app/mis-ofertas' | '/app/ofertas'
+  id:
+    | '__root__'
+    | '/'
+    | '/app'
+    | '/app/mis-ofertas'
+    | '/app/ofertas'
+    | '/app/ofertas/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AppRoute: typeof AppRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +91,64 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/app': {
+      id: '/app'
+      path: '/app'
+      fullPath: '/app'
+      preLoaderRoute: typeof AppRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/app/mis-ofertas': {
+      id: '/app/mis-ofertas'
+      path: '/mis-ofertas'
+      fullPath: '/app/mis-ofertas'
+      preLoaderRoute: typeof AppMisOfertasRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/ofertas': {
+      id: '/app/ofertas'
+      path: '/ofertas'
+      fullPath: '/app/ofertas'
+      preLoaderRoute: typeof AppOfertasRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/ofertas/': {
+      id: '/app/ofertas/'
+      path: '/'
+      fullPath: '/app/ofertas/'
+      preLoaderRoute: typeof AppOfertasIndexRouteImport
+      parentRoute: typeof AppOfertasRoute
+    }
   }
 }
 
+interface AppOfertasRouteChildren {
+  AppOfertasIndexRoute: typeof AppOfertasIndexRoute
+}
+
+const AppOfertasRouteChildren: AppOfertasRouteChildren = {
+  AppOfertasIndexRoute: AppOfertasIndexRoute,
+}
+
+const AppOfertasRouteWithChildren = AppOfertasRoute._addFileChildren(
+  AppOfertasRouteChildren,
+)
+
+interface AppRouteChildren {
+  AppMisOfertasRoute: typeof AppMisOfertasRoute
+  AppOfertasRoute: typeof AppOfertasRouteWithChildren
+}
+
+const AppRouteChildren: AppRouteChildren = {
+  AppMisOfertasRoute: AppMisOfertasRoute,
+  AppOfertasRoute: AppOfertasRouteWithChildren,
+}
+
+const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AppRoute: AppRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
