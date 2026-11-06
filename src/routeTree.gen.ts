@@ -13,9 +13,13 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppRouteImport } from './routes/app'
 import { Route as AppMisOfertasRouteImport } from './routes/app.mis-ofertas'
 import { Route as AppOfertasRouteImport } from './routes/app.ofertas'
+import { Route as AppOperacionesRouteImport } from './routes/app.operaciones'
 import { Route as AppPublicarRouteImport } from './routes/app.publicar'
+import { Route as AppRutasRouteImport } from './routes/app.rutas'
 import { Route as AppOfertasIndexRouteImport } from './routes/app.ofertas.index'
 import { Route as AppOfertasIdRouteImport } from './routes/app.ofertas.$id'
+import { Route as AppOperacionesIndexRouteImport } from './routes/app.operaciones.index'
+import { Route as AppOperacionesIdRouteImport } from './routes/app.operaciones.$id'
 import { Route as AppSolicitudesNuevaRouteImport } from './routes/app.solicitudes.nueva'
 
 const IndexRoute = IndexRouteImport.update({
@@ -38,9 +42,19 @@ const AppOfertasRoute = AppOfertasRouteImport.update({
   path: '/ofertas',
   getParentRoute: () => AppRoute,
 } as any)
+const AppOperacionesRoute = AppOperacionesRouteImport.update({
+  id: '/operaciones',
+  path: '/operaciones',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppPublicarRoute = AppPublicarRouteImport.update({
   id: '/publicar',
   path: '/publicar',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppRutasRoute = AppRutasRouteImport.update({
+  id: '/rutas',
+  path: '/rutas',
   getParentRoute: () => AppRoute,
 } as any)
 const AppOfertasIndexRoute = AppOfertasIndexRouteImport.update({
@@ -53,6 +67,16 @@ const AppOfertasIdRoute = AppOfertasIdRouteImport.update({
   path: '/$id',
   getParentRoute: () => AppOfertasRoute,
 } as any)
+const AppOperacionesIndexRoute = AppOperacionesIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AppOperacionesRoute,
+} as any)
+const AppOperacionesIdRoute = AppOperacionesIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => AppOperacionesRoute,
+} as any)
 const AppSolicitudesNuevaRoute = AppSolicitudesNuevaRouteImport.update({
   id: '/solicitudes/nueva',
   path: '/solicitudes/nueva',
@@ -64,19 +88,26 @@ export interface FileRoutesByFullPath {
   '/app': typeof AppRouteWithChildren
   '/app/mis-ofertas': typeof AppMisOfertasRoute
   '/app/ofertas': typeof AppOfertasRouteWithChildren
+  '/app/operaciones': typeof AppOperacionesRouteWithChildren
   '/app/publicar': typeof AppPublicarRoute
+  '/app/rutas': typeof AppRutasRoute
   '/app/ofertas/$id': typeof AppOfertasIdRoute
+  '/app/operaciones/$id': typeof AppOperacionesIdRoute
   '/app/solicitudes/nueva': typeof AppSolicitudesNuevaRoute
   '/app/ofertas/': typeof AppOfertasIndexRoute
+  '/app/operaciones/': typeof AppOperacionesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/app': typeof AppRouteWithChildren
   '/app/mis-ofertas': typeof AppMisOfertasRoute
   '/app/publicar': typeof AppPublicarRoute
+  '/app/rutas': typeof AppRutasRoute
   '/app/ofertas/$id': typeof AppOfertasIdRoute
+  '/app/operaciones/$id': typeof AppOperacionesIdRoute
   '/app/solicitudes/nueva': typeof AppSolicitudesNuevaRoute
   '/app/ofertas': typeof AppOfertasIndexRoute
+  '/app/operaciones': typeof AppOperacionesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -84,10 +115,14 @@ export interface FileRoutesById {
   '/app': typeof AppRouteWithChildren
   '/app/mis-ofertas': typeof AppMisOfertasRoute
   '/app/ofertas': typeof AppOfertasRouteWithChildren
+  '/app/operaciones': typeof AppOperacionesRouteWithChildren
   '/app/publicar': typeof AppPublicarRoute
+  '/app/rutas': typeof AppRutasRoute
   '/app/ofertas/$id': typeof AppOfertasIdRoute
+  '/app/operaciones/$id': typeof AppOperacionesIdRoute
   '/app/solicitudes/nueva': typeof AppSolicitudesNuevaRoute
   '/app/ofertas/': typeof AppOfertasIndexRoute
+  '/app/operaciones/': typeof AppOperacionesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -96,29 +131,40 @@ export interface FileRouteTypes {
     | '/app'
     | '/app/mis-ofertas'
     | '/app/ofertas'
+    | '/app/operaciones'
     | '/app/publicar'
+    | '/app/rutas'
     | '/app/ofertas/$id'
+    | '/app/operaciones/$id'
     | '/app/solicitudes/nueva'
     | '/app/ofertas/'
+    | '/app/operaciones/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/app'
     | '/app/mis-ofertas'
     | '/app/publicar'
+    | '/app/rutas'
     | '/app/ofertas/$id'
+    | '/app/operaciones/$id'
     | '/app/solicitudes/nueva'
     | '/app/ofertas'
+    | '/app/operaciones'
   id:
     | '__root__'
     | '/'
     | '/app'
     | '/app/mis-ofertas'
     | '/app/ofertas'
+    | '/app/operaciones'
     | '/app/publicar'
+    | '/app/rutas'
     | '/app/ofertas/$id'
+    | '/app/operaciones/$id'
     | '/app/solicitudes/nueva'
     | '/app/ofertas/'
+    | '/app/operaciones/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -156,11 +202,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppOfertasRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/operaciones': {
+      id: '/app/operaciones'
+      path: '/operaciones'
+      fullPath: '/app/operaciones'
+      preLoaderRoute: typeof AppOperacionesRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/app/publicar': {
       id: '/app/publicar'
       path: '/publicar'
       fullPath: '/app/publicar'
       preLoaderRoute: typeof AppPublicarRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/rutas': {
+      id: '/app/rutas'
+      path: '/rutas'
+      fullPath: '/app/rutas'
+      preLoaderRoute: typeof AppRutasRouteImport
       parentRoute: typeof AppRoute
     }
     '/app/ofertas/': {
@@ -176,6 +236,20 @@ declare module '@tanstack/react-router' {
       fullPath: '/app/ofertas/$id'
       preLoaderRoute: typeof AppOfertasIdRouteImport
       parentRoute: typeof AppOfertasRoute
+    }
+    '/app/operaciones/': {
+      id: '/app/operaciones/'
+      path: '/'
+      fullPath: '/app/operaciones/'
+      preLoaderRoute: typeof AppOperacionesIndexRouteImport
+      parentRoute: typeof AppOperacionesRoute
+    }
+    '/app/operaciones/$id': {
+      id: '/app/operaciones/$id'
+      path: '/$id'
+      fullPath: '/app/operaciones/$id'
+      preLoaderRoute: typeof AppOperacionesIdRouteImport
+      parentRoute: typeof AppOperacionesRoute
     }
     '/app/solicitudes/nueva': {
       id: '/app/solicitudes/nueva'
@@ -201,17 +275,35 @@ const AppOfertasRouteWithChildren = AppOfertasRoute._addFileChildren(
   AppOfertasRouteChildren,
 )
 
+interface AppOperacionesRouteChildren {
+  AppOperacionesIdRoute: typeof AppOperacionesIdRoute
+  AppOperacionesIndexRoute: typeof AppOperacionesIndexRoute
+}
+
+const AppOperacionesRouteChildren: AppOperacionesRouteChildren = {
+  AppOperacionesIdRoute: AppOperacionesIdRoute,
+  AppOperacionesIndexRoute: AppOperacionesIndexRoute,
+}
+
+const AppOperacionesRouteWithChildren = AppOperacionesRoute._addFileChildren(
+  AppOperacionesRouteChildren,
+)
+
 interface AppRouteChildren {
   AppMisOfertasRoute: typeof AppMisOfertasRoute
   AppOfertasRoute: typeof AppOfertasRouteWithChildren
+  AppOperacionesRoute: typeof AppOperacionesRouteWithChildren
   AppPublicarRoute: typeof AppPublicarRoute
+  AppRutasRoute: typeof AppRutasRoute
   AppSolicitudesNuevaRoute: typeof AppSolicitudesNuevaRoute
 }
 
 const AppRouteChildren: AppRouteChildren = {
   AppMisOfertasRoute: AppMisOfertasRoute,
   AppOfertasRoute: AppOfertasRouteWithChildren,
+  AppOperacionesRoute: AppOperacionesRouteWithChildren,
   AppPublicarRoute: AppPublicarRoute,
+  AppRutasRoute: AppRutasRoute,
   AppSolicitudesNuevaRoute: AppSolicitudesNuevaRoute,
 }
 
