@@ -58,7 +58,7 @@
 
 /* Paleta Vía Láctea: #12343B, #087E8B, #D7E8A5, #F5F7F3, #E9896A */
 :root {
-  --radius: 0.75rem;
+  --radius: 0.5rem;
   --background: oklch(0.973 0.006 130);
   --foreground: oklch(0.29 0.04 210);
   --card: oklch(1 0 0);
@@ -105,7 +105,7 @@
   * { border-color: var(--color-border); }
   html { font-family: var(--font-sans); }
   body { background-color: var(--color-background); color: var(--color-foreground); -webkit-font-smoothing: antialiased; }
-  h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.02em; }
+  h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: 0; }
 }
 
 @utility bg-hero { background-image: var(--gradient-hero); }
@@ -118,3 +118,7 @@
 @utility route-anim { stroke-dasharray: 6 6; animation: dash 2.4s linear infinite; }
 @keyframes floaty { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-6px) } }
 @utility floaty { animation: floaty 5s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; scroll-behavior: auto !important; }
+}

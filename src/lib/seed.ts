@@ -71,8 +71,11 @@ export function buildSeed(now = Date.now()) {
       createdAt: h(-2.5),
     },
   ];
-  offers.find((o) => o.id === "of-103")!.status = "en_negociacion";
-  offers.find((o) => o.id === "of-103")!.firstContactAt = h(-2.5);
+  const negotiatingOffer = offers.find((o) => o.id === "of-103");
+  if (negotiatingOffer) {
+    negotiatingOffer.status = "en_negociacion";
+    negotiatingOffer.firstContactAt = h(-2.5);
+  }
 
   const routes: RouteGroup[] = [];
 
