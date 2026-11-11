@@ -7,8 +7,12 @@ export const SIM = { copPerKm: 4200, maxClusterKm: 30 };
 export function routeMetrics(stops: Offer[], destination: string) {
   const pts = stops.map((s) => muni(s.municipality));
   let km = 0;
-  for (let i = 1; i < pts.length; i++) km += haversineKm(pts[i - 1], pts[i]);
-  if (pts.length) km += haversineKm(pts[pts.length - 1], muni(destination));
+  for (let i = 1; i < pts.length; i++) {
+    const previous = pts[i - 1]; const current = pts[i];
+    if (previous && current) km += haversineKm(previous, current);
+  }
+  const last = pts.at(-1);
+  if (last) km += haversineKm(last, muni(destination));
   km *= ROAD_FACTOR;
   // ruta base: cada productor viaja por separado al destino (ida)
   const baseKm = pts.reduce((s, p) => s + haversineKm(p, muni(destination)) * ROAD_FACTOR, 0);
