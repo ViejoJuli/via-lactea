@@ -6,7 +6,7 @@ import { useStore } from '@/lib/store';
 import { ROLE_LABEL, type Role } from '@/lib/types';
 import { Brand } from './shared';
 const nav = [
-  { to: '/', label: 'Mi tablero', icon: LayoutDashboard },
+  { to: '/app/tablero', label: 'Mi tablero', icon: LayoutDashboard },
   { to: '/app/ofertas', label: 'Mercado de oportunidades', icon: Store },
   { to: '/app/mis-ofertas', label: 'Mis ofertas', icon: Sprout },
   { to: '/app/operaciones', label: 'Mis operaciones', icon: ClipboardList },

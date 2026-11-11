@@ -14,4 +14,9 @@ describe("App routing", () => {
 
     expect(matches.at(-1)?.routeId).not.toBe(rootRouteId);
   });
+  it("keeps the dashboard separate from the public homepage", () => {
+    const router = createRouter({ routeTree, context: { queryClient: new QueryClient() } });
+    expect(router.matchRoutes('/').at(-1)?.routeId).toBe('/');
+    expect(router.matchRoutes('/app/tablero').at(-1)?.routeId).toBe('/app/tablero');
+  });
 });

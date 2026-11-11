@@ -31,3 +31,4 @@ use the editor.
 
 ## Application architecture
 - Keep demonstration actions in the existing StoreProvider, shared UI in components, and distinct content pages in TanStack file routes; this isolates the prototype from later authenticated persistence.
+- Serve the public introduction at `/` and the demonstration dashboard at `/app/tablero`; public CTAs explain demo limitations before setting a StoreProvider role, keeping public browsing separate from future authenticated access.
