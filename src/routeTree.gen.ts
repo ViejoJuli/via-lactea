@@ -15,6 +15,8 @@ import { Route as ComoFuncionaRouteImport } from './routes/como-funciona'
 import { Route as ConoceRouteImport } from './routes/conoce'
 import { Route as ParaQuienRouteImport } from './routes/para-quien'
 import { Route as PreguntasFrecuentesRouteImport } from './routes/preguntas-frecuentes'
+import { Route as AppAdminRouteImport } from './routes/app.admin'
+import { Route as AppAlertasRouteImport } from './routes/app.alertas'
 import { Route as AppMisOfertasRouteImport } from './routes/app.mis-ofertas'
 import { Route as AppOfertasRouteImport } from './routes/app.ofertas'
 import { Route as AppOperacionesRouteImport } from './routes/app.operaciones'
@@ -56,6 +58,16 @@ const PreguntasFrecuentesRoute = PreguntasFrecuentesRouteImport.update({
   id: '/preguntas-frecuentes',
   path: '/preguntas-frecuentes',
   getParentRoute: () => rootRouteImport,
+} as any)
+const AppAdminRoute = AppAdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppAlertasRoute = AppAlertasRouteImport.update({
+  id: '/alertas',
+  path: '/alertas',
+  getParentRoute: () => AppRoute,
 } as any)
 const AppMisOfertasRoute = AppMisOfertasRouteImport.update({
   id: '/mis-ofertas',
@@ -120,6 +132,8 @@ export interface FileRoutesByFullPath {
   '/conoce': typeof ConoceRoute
   '/para-quien': typeof ParaQuienRoute
   '/preguntas-frecuentes': typeof PreguntasFrecuentesRoute
+  '/app/admin': typeof AppAdminRoute
+  '/app/alertas': typeof AppAlertasRoute
   '/app/mis-ofertas': typeof AppMisOfertasRoute
   '/app/ofertas': typeof AppOfertasRouteWithChildren
   '/app/operaciones': typeof AppOperacionesRouteWithChildren
@@ -139,6 +153,8 @@ export interface FileRoutesByTo {
   '/conoce': typeof ConoceRoute
   '/para-quien': typeof ParaQuienRoute
   '/preguntas-frecuentes': typeof PreguntasFrecuentesRoute
+  '/app/admin': typeof AppAdminRoute
+  '/app/alertas': typeof AppAlertasRoute
   '/app/mis-ofertas': typeof AppMisOfertasRoute
   '/app/publicar': typeof AppPublicarRoute
   '/app/rutas': typeof AppRutasRoute
@@ -157,6 +173,8 @@ export interface FileRoutesById {
   '/conoce': typeof ConoceRoute
   '/para-quien': typeof ParaQuienRoute
   '/preguntas-frecuentes': typeof PreguntasFrecuentesRoute
+  '/app/admin': typeof AppAdminRoute
+  '/app/alertas': typeof AppAlertasRoute
   '/app/mis-ofertas': typeof AppMisOfertasRoute
   '/app/ofertas': typeof AppOfertasRouteWithChildren
   '/app/operaciones': typeof AppOperacionesRouteWithChildren
@@ -178,6 +196,8 @@ export interface FileRouteTypes {
     | '/conoce'
     | '/para-quien'
     | '/preguntas-frecuentes'
+    | '/app/admin'
+    | '/app/alertas'
     | '/app/mis-ofertas'
     | '/app/ofertas'
     | '/app/operaciones'
@@ -197,6 +217,8 @@ export interface FileRouteTypes {
     | '/conoce'
     | '/para-quien'
     | '/preguntas-frecuentes'
+    | '/app/admin'
+    | '/app/alertas'
     | '/app/mis-ofertas'
     | '/app/publicar'
     | '/app/rutas'
@@ -214,6 +236,8 @@ export interface FileRouteTypes {
     | '/conoce'
     | '/para-quien'
     | '/preguntas-frecuentes'
+    | '/app/admin'
+    | '/app/alertas'
     | '/app/mis-ofertas'
     | '/app/ofertas'
     | '/app/operaciones'
@@ -279,6 +303,20 @@ declare module '@tanstack/react-router' {
       fullPath: '/preguntas-frecuentes'
       preLoaderRoute: typeof PreguntasFrecuentesRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/app/admin': {
+      id: '/app/admin'
+      path: '/admin'
+      fullPath: '/app/admin'
+      preLoaderRoute: typeof AppAdminRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/alertas': {
+      id: '/app/alertas'
+      path: '/alertas'
+      fullPath: '/app/alertas'
+      preLoaderRoute: typeof AppAlertasRouteImport
+      parentRoute: typeof AppRoute
     }
     '/app/mis-ofertas': {
       id: '/app/mis-ofertas'
@@ -389,6 +427,8 @@ const AppOperacionesRouteWithChildren = AppOperacionesRoute._addFileChildren(
 )
 
 interface AppRouteChildren {
+  AppAdminRoute: typeof AppAdminRoute
+  AppAlertasRoute: typeof AppAlertasRoute
   AppMisOfertasRoute: typeof AppMisOfertasRoute
   AppOfertasRoute: typeof AppOfertasRouteWithChildren
   AppOperacionesRoute: typeof AppOperacionesRouteWithChildren
@@ -399,6 +439,8 @@ interface AppRouteChildren {
 }
 
 const AppRouteChildren: AppRouteChildren = {
+  AppAdminRoute: AppAdminRoute,
+  AppAlertasRoute: AppAlertasRoute,
   AppMisOfertasRoute: AppMisOfertasRoute,
   AppOfertasRoute: AppOfertasRouteWithChildren,
   AppOperacionesRoute: AppOperacionesRouteWithChildren,
