@@ -11,11 +11,16 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppRouteImport } from './routes/app'
+import { Route as ComoFuncionaRouteImport } from './routes/como-funciona'
+import { Route as ConoceRouteImport } from './routes/conoce'
+import { Route as ParaQuienRouteImport } from './routes/para-quien'
+import { Route as PreguntasFrecuentesRouteImport } from './routes/preguntas-frecuentes'
 import { Route as AppMisOfertasRouteImport } from './routes/app.mis-ofertas'
 import { Route as AppOfertasRouteImport } from './routes/app.ofertas'
 import { Route as AppOperacionesRouteImport } from './routes/app.operaciones'
 import { Route as AppPublicarRouteImport } from './routes/app.publicar'
 import { Route as AppRutasRouteImport } from './routes/app.rutas'
+import { Route as AppTableroRouteImport } from './routes/app.tablero'
 import { Route as AppOfertasIndexRouteImport } from './routes/app.ofertas.index'
 import { Route as AppOfertasIdRouteImport } from './routes/app.ofertas.$id'
 import { Route as AppOperacionesIndexRouteImport } from './routes/app.operaciones.index'
@@ -30,6 +35,26 @@ const IndexRoute = IndexRouteImport.update({
 const AppRoute = AppRouteImport.update({
   id: '/app',
   path: '/app',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ComoFuncionaRoute = ComoFuncionaRouteImport.update({
+  id: '/como-funciona',
+  path: '/como-funciona',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConoceRoute = ConoceRouteImport.update({
+  id: '/conoce',
+  path: '/conoce',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ParaQuienRoute = ParaQuienRouteImport.update({
+  id: '/para-quien',
+  path: '/para-quien',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PreguntasFrecuentesRoute = PreguntasFrecuentesRouteImport.update({
+  id: '/preguntas-frecuentes',
+  path: '/preguntas-frecuentes',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AppMisOfertasRoute = AppMisOfertasRouteImport.update({
@@ -55,6 +80,11 @@ const AppPublicarRoute = AppPublicarRouteImport.update({
 const AppRutasRoute = AppRutasRouteImport.update({
   id: '/rutas',
   path: '/rutas',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppTableroRoute = AppTableroRouteImport.update({
+  id: '/tablero',
+  path: '/tablero',
   getParentRoute: () => AppRoute,
 } as any)
 const AppOfertasIndexRoute = AppOfertasIndexRouteImport.update({
@@ -86,11 +116,16 @@ const AppSolicitudesNuevaRoute = AppSolicitudesNuevaRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/app': typeof AppRouteWithChildren
+  '/como-funciona': typeof ComoFuncionaRoute
+  '/conoce': typeof ConoceRoute
+  '/para-quien': typeof ParaQuienRoute
+  '/preguntas-frecuentes': typeof PreguntasFrecuentesRoute
   '/app/mis-ofertas': typeof AppMisOfertasRoute
   '/app/ofertas': typeof AppOfertasRouteWithChildren
   '/app/operaciones': typeof AppOperacionesRouteWithChildren
   '/app/publicar': typeof AppPublicarRoute
   '/app/rutas': typeof AppRutasRoute
+  '/app/tablero': typeof AppTableroRoute
   '/app/ofertas/$id': typeof AppOfertasIdRoute
   '/app/operaciones/$id': typeof AppOperacionesIdRoute
   '/app/solicitudes/nueva': typeof AppSolicitudesNuevaRoute
@@ -100,9 +135,14 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/app': typeof AppRouteWithChildren
+  '/como-funciona': typeof ComoFuncionaRoute
+  '/conoce': typeof ConoceRoute
+  '/para-quien': typeof ParaQuienRoute
+  '/preguntas-frecuentes': typeof PreguntasFrecuentesRoute
   '/app/mis-ofertas': typeof AppMisOfertasRoute
   '/app/publicar': typeof AppPublicarRoute
   '/app/rutas': typeof AppRutasRoute
+  '/app/tablero': typeof AppTableroRoute
   '/app/ofertas/$id': typeof AppOfertasIdRoute
   '/app/operaciones/$id': typeof AppOperacionesIdRoute
   '/app/solicitudes/nueva': typeof AppSolicitudesNuevaRoute
@@ -113,11 +153,16 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/app': typeof AppRouteWithChildren
+  '/como-funciona': typeof ComoFuncionaRoute
+  '/conoce': typeof ConoceRoute
+  '/para-quien': typeof ParaQuienRoute
+  '/preguntas-frecuentes': typeof PreguntasFrecuentesRoute
   '/app/mis-ofertas': typeof AppMisOfertasRoute
   '/app/ofertas': typeof AppOfertasRouteWithChildren
   '/app/operaciones': typeof AppOperacionesRouteWithChildren
   '/app/publicar': typeof AppPublicarRoute
   '/app/rutas': typeof AppRutasRoute
+  '/app/tablero': typeof AppTableroRoute
   '/app/ofertas/$id': typeof AppOfertasIdRoute
   '/app/operaciones/$id': typeof AppOperacionesIdRoute
   '/app/solicitudes/nueva': typeof AppSolicitudesNuevaRoute
@@ -129,11 +174,16 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/app'
+    | '/como-funciona'
+    | '/conoce'
+    | '/para-quien'
+    | '/preguntas-frecuentes'
     | '/app/mis-ofertas'
     | '/app/ofertas'
     | '/app/operaciones'
     | '/app/publicar'
     | '/app/rutas'
+    | '/app/tablero'
     | '/app/ofertas/$id'
     | '/app/operaciones/$id'
     | '/app/solicitudes/nueva'
@@ -143,9 +193,14 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/app'
+    | '/como-funciona'
+    | '/conoce'
+    | '/para-quien'
+    | '/preguntas-frecuentes'
     | '/app/mis-ofertas'
     | '/app/publicar'
     | '/app/rutas'
+    | '/app/tablero'
     | '/app/ofertas/$id'
     | '/app/operaciones/$id'
     | '/app/solicitudes/nueva'
@@ -155,11 +210,16 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/app'
+    | '/como-funciona'
+    | '/conoce'
+    | '/para-quien'
+    | '/preguntas-frecuentes'
     | '/app/mis-ofertas'
     | '/app/ofertas'
     | '/app/operaciones'
     | '/app/publicar'
     | '/app/rutas'
+    | '/app/tablero'
     | '/app/ofertas/$id'
     | '/app/operaciones/$id'
     | '/app/solicitudes/nueva'
@@ -170,6 +230,10 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AppRoute: typeof AppRouteWithChildren
+  ComoFuncionaRoute: typeof ComoFuncionaRoute
+  ConoceRoute: typeof ConoceRoute
+  ParaQuienRoute: typeof ParaQuienRoute
+  PreguntasFrecuentesRoute: typeof PreguntasFrecuentesRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -186,6 +250,34 @@ declare module '@tanstack/react-router' {
       path: '/app'
       fullPath: '/app'
       preLoaderRoute: typeof AppRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/como-funciona': {
+      id: '/como-funciona'
+      path: '/como-funciona'
+      fullPath: '/como-funciona'
+      preLoaderRoute: typeof ComoFuncionaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/conoce': {
+      id: '/conoce'
+      path: '/conoce'
+      fullPath: '/conoce'
+      preLoaderRoute: typeof ConoceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/para-quien': {
+      id: '/para-quien'
+      path: '/para-quien'
+      fullPath: '/para-quien'
+      preLoaderRoute: typeof ParaQuienRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/preguntas-frecuentes': {
+      id: '/preguntas-frecuentes'
+      path: '/preguntas-frecuentes'
+      fullPath: '/preguntas-frecuentes'
+      preLoaderRoute: typeof PreguntasFrecuentesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/app/mis-ofertas': {
@@ -221,6 +313,13 @@ declare module '@tanstack/react-router' {
       path: '/rutas'
       fullPath: '/app/rutas'
       preLoaderRoute: typeof AppRutasRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/tablero': {
+      id: '/app/tablero'
+      path: '/tablero'
+      fullPath: '/app/tablero'
+      preLoaderRoute: typeof AppTableroRouteImport
       parentRoute: typeof AppRoute
     }
     '/app/ofertas/': {
@@ -295,6 +394,7 @@ interface AppRouteChildren {
   AppOperacionesRoute: typeof AppOperacionesRouteWithChildren
   AppPublicarRoute: typeof AppPublicarRoute
   AppRutasRoute: typeof AppRutasRoute
+  AppTableroRoute: typeof AppTableroRoute
   AppSolicitudesNuevaRoute: typeof AppSolicitudesNuevaRoute
 }
 
@@ -304,6 +404,7 @@ const AppRouteChildren: AppRouteChildren = {
   AppOperacionesRoute: AppOperacionesRouteWithChildren,
   AppPublicarRoute: AppPublicarRoute,
   AppRutasRoute: AppRutasRoute,
+  AppTableroRoute: AppTableroRoute,
   AppSolicitudesNuevaRoute: AppSolicitudesNuevaRoute,
 }
 
@@ -312,6 +413,10 @@ const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AppRoute: AppRouteWithChildren,
+  ComoFuncionaRoute: ComoFuncionaRoute,
+  ConoceRoute: ConoceRoute,
+  ParaQuienRoute: ParaQuienRoute,
+  PreguntasFrecuentesRoute: PreguntasFrecuentesRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
