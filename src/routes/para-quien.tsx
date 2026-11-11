@@ -1,0 +1,5 @@
+import { createFileRoute } from '@tanstack/react-router';
+import { PublicShell, PublicIntro, ProfileGrid, PilotBand } from '@/components/via/public-site';
+import { pageHead } from '@/lib/page-head';
+export const Route = createFileRoute('/para-quien')({ head: () => pageHead('Una red para cada perfil', 'Oportunidades para productores, asociaciones, compradores B2B y transportadores de la cadena láctea colombiana.'), component: ForWhom });
+function ForWhom() { return <PublicShell><PublicIntro eyebrow="Una red, distintos caminos" title="Tu lugar en la cadena. Tu conexión en la red.">Producir, transformar o movilizar: cada actividad tiene necesidades distintas y una oportunidad para coordinarse mejor.</PublicIntro><section className="mx-auto max-w-7xl px-5 pb-16 sm:px-8"><ProfileGrid /><p className="mt-8 text-xs leading-relaxed text-muted-foreground">Productores: publicación gratuita durante el piloto. Planes B2B y servicios logísticos: modelo por validar, sin tarifas definitivas ni cobros en la demostración.</p></section><PilotBand /></PublicShell>; }

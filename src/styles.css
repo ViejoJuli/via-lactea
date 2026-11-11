@@ -97,6 +97,8 @@
   --sidebar-accent-foreground: oklch(0.98 0 0);
   --sidebar-border: oklch(0.36 0.04 210);
   --sidebar-ring: oklch(0.53 0.09 205);
+  --landing-overlay: linear-gradient(90deg, oklch(0.22 0.035 210 / 94%) 0%, oklch(0.22 0.035 210 / 80%) 32%, oklch(0.22 0.035 210 / 25%) 67%, transparent 100%);
+  --landing-overlay-mobile: linear-gradient(90deg, oklch(0.22 0.035 210 / 93%), oklch(0.22 0.035 210 / 68%));
   --gradient-hero: linear-gradient(135deg, oklch(0.29 0.04 210) 0%, oklch(0.36 0.06 205) 60%, oklch(0.45 0.08 200) 100%);
   --gradient-lime: linear-gradient(120deg, oklch(0.91 0.08 120), oklch(0.86 0.09 140));
 }
@@ -113,6 +115,13 @@
 @utility shadow-soft { box-shadow: var(--shadow-soft); }
 @utility shadow-lift { box-shadow: var(--shadow-lift); }
 @utility tabular { font-variant-numeric: tabular-nums; }
+
+.landing-hero { height: min(740px, calc(100svh - 135px)); min-height: 590px; }
+.landing-shade { background: var(--landing-overlay); }
+@media (max-width: 639px) {
+  .landing-hero { height: auto; min-height: 640px; }
+  .landing-shade { background: var(--landing-overlay-mobile); }
+}
 
 @keyframes dash { to { stroke-dashoffset: -40; } }
 @utility route-anim { stroke-dasharray: 6 6; animation: dash 2.4s linear infinite; }

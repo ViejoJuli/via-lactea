@@ -1,0 +1,5 @@
+import { createFileRoute } from '@tanstack/react-router';
+import { PublicShell, PublicIntro, PilotBand, faqs } from '@/components/via/public-site';
+import { pageHead } from '@/lib/page-head';
+export const Route = createFileRoute('/preguntas-frecuentes')({ head: () => pageHead('Preguntas frecuentes', 'Resuelve tus dudas sobre el piloto de Vía Láctea, publicación de ofertas, privacidad y responsabilidades de calidad.'), component: FAQ });
+function FAQ() { return <PublicShell><PublicIntro eyebrow="Antes de empezar" title="Hablemos con claridad.">Lo que puedes esperar de la red y lo que cada participante necesita verificar.</PublicIntro><section className="mx-auto max-w-7xl px-5 pb-16 sm:px-8">{faqs.map(([q, a]) => <details key={q} className="border-b py-6"><summary className="cursor-pointer text-base font-bold">{q}</summary><p className="mt-4 max-w-3xl text-sm leading-relaxed text-muted-foreground">{a}</p></details>)}</section><PilotBand /></PublicShell>; }
